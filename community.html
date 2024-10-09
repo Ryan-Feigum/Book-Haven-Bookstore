@@ -9,8 +9,10 @@
 <body>
     
 <header>
+    <div id="header-logo">
+        <img id="logo" src="src\Client3_LogoPalette1_2E4057.png" alt="Book Haven Bookstore Logo">
+    </div>
     <nav>
-        <img src="src\Client3_LogoPalette1_2E4057.png">
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="gallery.html">Gallery</a></li>
@@ -24,18 +26,18 @@
 <main>    
     <h1>Community</h1><br>
 
+    <section class="events"> 
     <h2>Events</h2>
     <p>Check out our upcoming events!</p>
-    <section>
-        <ul>
+        <ul id="event-list">
             <li>Event 1</li>
             <li>Event 2</li>
             <li>Event 3</li>
         </ul>
     </section>
 
-    <h2>Customer Testimonials</h1>
     <section>
+    <h2>Customer Testimonials</h1>
         <article>
             <h2>John Doe</h2>
             <p>"Fantastic products and excellent customer service!"</p>
@@ -50,25 +52,30 @@
 </main>
 
 <footer>
-    
-    <label font-weight="bold">Social Media</label>
-    <ul>
-        <li><a href="https://www.facebook.com">Facebook</a></li>
-        <li><a href="https://www.instagram.com">Instagram</a></li>
-        <li><a href="https://www.x.com">x</a></li>
-    </ul>
-    <label font-weight="bold">Helpful Links</label>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="community.html">Community</a></li>
-    </ul>
-    <form action="#" method="POST">
-        <label for="newsletter">Sign up for our newsletter below!</label><br>
-        <input type="email" id="newsletter" name="newsletter">
-        <button type="submit">Submit</button>
-    </form>
+    <div class="footer-column">
+        <label font-weight="bold">Social Media</label>
+        <ul>
+            <li><a href="https://www.facebook.com">Facebook</a></li>
+            <li><a href="https://www.instagram.com">Instagram</a></li>
+            <li><a href="https://www.x.com">X</a></li>
+        </ul>
+        </div>
+        <div class="footer-column">
+        <label font-weight="bold">Helpful Links</label>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="community.html">Community</a></li>
+        </ul>
+        </div>
+        <div class="footer-column">
+        <form action="#" method="POST">
+            <label for="newsletter">Sign up for our newsletter below!</label><br>
+            <input type="email" id="newsletter" name="newsletter">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </footer>
 </body>
 </html>
