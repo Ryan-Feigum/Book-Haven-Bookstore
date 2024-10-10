@@ -4,78 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport"  content="width=device-width, initial-scale=1.0">
     <title>Book Haven Bookstore | Shop</title>
-    <link rel="stylesheet" href="styles.css">   
+   <link rel="stylesheet" href="styles.css"> 
+    <script src="script.js" defer></script>
 </head>
 <body>
     
-<header>
-    <div id="header-logo">
-        <img id="logo" src="src\Client3_LogoPalette1_2E4057.png" alt="Book Haven Bookstore Logo">
-    </div>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="community.html">Community</a></li>
-        </ul>
-
-    </nav>
-</header>
-
-<main>
+    <header>
+        <div id="header-logo">
+            <img id="logo" src="src\Client3_LogoPalette1_2E4057.png" alt="Book Haven Bookstore Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="community.html">Community</a></li>
+            </ul>
+            
+        </nav>
+    </header>
+    
+    <main>
     <h1>Product Gallery</h1>
-    <button id="cart">View Cart</button>
+    <button id="view-cart-button">View Cart</button>
+    <button id="clear-cart-button">View Cart</button>
+    <button id="process-order-button">View Cart</button>
     <table>
         <tr>
             <td>
                 <img src="src\Client3_Book1.png" alt="Product 1">
                 <p>Book Title 1</p>
-                <button>Add to Cart</button>
+                <button id="add-to-cart-button" value="P1">Add to Cart</button>
             </td>
             <td>
                 <img src="src\Client3_Book2.png" alt="Product 2">
                 <p>Book Title 2</p>
-                <button>Add to Cart</button>
+                <button id="add-to-cart-button" item-id="P2">Add to Cart</button>
             </td>
             <td>
                 <img src="src\Client3_Book3.png" alt="Product 3">
                 <p>Book Title 3</p>
-                <button>Add to Cart</button>
+                <button id="add-to-cart-button" data-item-id="P3">Add to Cart</button>
             </td>
         </tr>
         <tr>
             <td>
                 <img src="src\Client3_Magazine1.png" alt="Product 4">
                 <p>Magazine Title 1</p>
-                <button>Add to Cart</button>
+                <button id="add-to-cart-button" data-item-id="P4">Add to Cart</button>
             </td>
             <td>
                 <img src="src\Client3_Magazine2.png" alt="Product 5">
                 <p>Magazine Title 2</p>
-                <button>Add to Cart</button>
+                <button id="add-to-cart-button" data-item-id="P5">Add to Cart</button>
             </td>
             <td>
                 <img src="src\Client3_Magazine3.png" alt="Product 6">
                 <p>Magazine Title 3</p>
-                <button>Add to Cart</button>
+                <button id="add-to-cart-button" data-item-id="P6">Add to Cart</button>
             </td>
         </tr>
         <tr>
             <td>
                 <img src="src\Client3_Notebook.png" alt="Product 7">
                 <p>Notebook</p>
-                <button>Add to Cart</button>
+                <button id="add-to-cart-button" data-item-id="P7">Add to Cart</button>
             </td>
             <td>
                 <img src="src\Client3_Stickers.png" alt="Product 8">
                 <p>Stickers</p>
-                <button>Add to Cart</button>
+                <button id="add-to-cart-button" data-item-id="P8">Add to Cart</button>
             </td>
             <td>
                 <img src="src\Client3_ToteBag.png" alt="Product 9">
                 <p>Tote Bag</p>
-                <button>Add to Cart</button>
+                <button id="add-to-cart-button" data-item-id="P9">Add to Cart</button>
             </td>
         </tr>
     </table>
@@ -103,7 +106,7 @@
         <form action="#" method="POST">
             <label for="newsletter">Sign up for our newsletter below!</label><br>
             <input type="email" id="newsletter" name="newsletter">
-            <button type="submit">Submit</button>
+            <button type="submit" id="subscribe-button">Submit</button>
         </form>
     </div>
 </footer>

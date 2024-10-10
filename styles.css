@@ -229,13 +229,8 @@ table {
     color: #fff; 
     border: none;
     border-radius: 5px; 
-    cursor: pointer;
   }
-  
-  td button a {
-    text-decoration: none;
-    color: #fff; 
-  }
+
 
   /* Make the columns responsive */
   @media (min-width: 768px) {
