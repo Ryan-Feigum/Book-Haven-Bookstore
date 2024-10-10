@@ -10,7 +10,6 @@ document.getElementById("subscribe-button").addEventListener('click', () => {
 let cart = [];
 
 // Gallery Page
-
 document.getElementById('view-cart-button').addEventListener('click', () => {
     if (cart.length > 0) {
       // Display the alert window
@@ -22,11 +21,19 @@ document.getElementById('view-cart-button').addEventListener('click', () => {
   });
 
 // Get the add to cart buttons
-document.getElementById("add-to-cart-button").addEventListener('click', () => {
+document.getElementByClassName("add-to-cart-button").addEventListener('click', () => {
+    // Get the product ID
+    let productId = document.getElementsByClassName("add-to-cart-button");
     // Add the item to the cart
-    cart.push(button.value);
+    try {
+        cart.push(productId.value);
+    } catch (error) {
+        console.error(error);
+    }
+    
     // Display the alert window
     alert('Item added to the cart');
+    console.log(cart);
   });
 
 
