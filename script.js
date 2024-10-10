@@ -1,4 +1,4 @@
-
+document.addEventListener("DOMContentLoaded", function() {
 // Newsletter
 // Add an event listener to the subscribe button
 document.getElementById("subscribe-button").addEventListener("click", () => {
@@ -6,15 +6,7 @@ document.getElementById("subscribe-button").addEventListener("click", () => {
   alert("Thank you for subscribing.");
 });
 
-// About Page
-// Add an event listener to the submit button
-document.getElementById("submit-button").addEventListener("click", () => {
-    // Display the alert window
-    try {
-    alert("Thank you for your message."); } catch (error) {
-        console.log("Error: " + error);
-    }
-  });
+
 
 // Gallery Page
 // Initialize an empty cart array
@@ -41,7 +33,7 @@ document.getElementById("view-cart-button").addEventListener("click", () => {
         cart.push(value);
         // Display the alert window
         alert("Item added to the cart");
-        //console.log(cart);
+        console.log(cart);  
     }
 });
 
@@ -68,4 +60,16 @@ document.getElementById("process-order-button").addEventListener("click", () => 
     // Display the alert window
     alert("Cart is empty.");
   }
+});
+
+// About Page
+// Add an event listener to the submit button
+document.getElementById("submit-button").addEventListener("click", () => {
+    // Display the alert window
+    try {
+    alert("Thank you for your message."); } catch (error) {
+        console.log("Error: " + error);
+    }
+  });
+
 });
