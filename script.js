@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-
 
 // Newsletter ----------------------------------------------------
 
@@ -18,18 +16,6 @@ subscribeButton.addEventListener("click", () => {
 // Initialize an empty cart array
 let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 
-// Select all elements with the class "add-to-cart-button"
-var addCartButton = document.querySelectorAll(".add-to-cart-button");
-// Loop through each button and add an event listener
-addCartButton.forEach((button) => {
-  button.addEventListener("click", () => {
-      // Get the specific product value
-      var item = this.getAttribute("item");
-      // Add the item to the cart
-      addToCart(item);
-  })
-});
-
 function addToCart(item) {
   // Add item to array
   cart.push(item);
@@ -39,12 +25,27 @@ function addToCart(item) {
   showMessage("Item added to the cart: " + item);
 }
 
-// Select element with the id "view-cart-button"
+// Select all elements with the class "add-to-cart-button"
+var addCartButton = document.querySelectorAll(".add-to-cart-button");
+// Loop through each button and add an event listener
+addCartButton.forEach((button) => {
+  button.addEventListener("click", () => {
+      // Get the specific product value
+      var item = button.getAttribute("item");
+      // Add the item to the cart
+      addToCart(item);
+  })
+});
+
+
+// Select elements with the id "view-cart-button" and "cart-modal"
 var viewCartButton = document.getElementById("view-cart-button");
+var cartModal = document.getElementById("cart-modal");
 // Add an event listener to the view cart button
 viewCartButton.addEventListener("click", () => {
     if (cart.length > 0) {
       // Display the cart items
+      openCartModal();
       viewCartItems();
     } else {
       // Display the alert window
@@ -52,8 +53,12 @@ viewCartButton.addEventListener("click", () => {
     }
   });
 
+  function openCartModal() {
+    cartModal.style.display = "block";
+  }
+
   function viewCartItems() {
-    var cartList = documemt.getElementById("cart-items");
+    var cartList = document.getElementById("cart-items");
     cartList.innerHTML = "";
 
     if (cart && cart.length > 0) {
@@ -66,30 +71,43 @@ viewCartButton.addEventListener("click", () => {
     }
   }
 
+// Select the element with the id "close-cart-modal"
+var closeCartButton = document.getElementById("close-cart-modal");
+// Add an event listener to closeCartButton
+closeCartButton.addEventListener("click", () => {
+  closeCartModal();
+// Function to close the modal by changing CSS property
+function closeCartModal() {
+  cartModal.style.display = "none";
+}
+
 // Select element with the id "clear-cart-button"
-var clearCartButton = document.getElementById("clear-cart-button");
+var clearCartButton = document.querySelectorAll(".clear-cart-button");
 // Add an event listener to the clear cart button
-clearCartButton.addEventListener("click", () => {
+clearCartButton.forEach((button) => {
+  button.addEventListener("click", () => {
   // Determine if the cart is empty
   if (cart.length > 0) {
     // Clear the cart
     cart = [];
     // Clear from session storage
     sessionStorage.removeItem("cart");
-    displayCartItems();
+    viewCartItems();
     // Display the alert window
     showMessage("Cart cleared");
-    closeCartModal();
   } else {
     // Display the alert window
     showMessage("No items to clear.");
   }
+  closeCartModal();
+});
 });
 
 // Select element with the id "process-order-button"
-var processOrderButton = document.getElementById("process-order-button");
+var processOrderButton = document.querySelectorAll(".process-order-button");
 // Add an event listener to the process order button
-processOrderButton.addEventListener("click", () => {
+processOrderButton.forEach((button) => {
+  button.addEventListener("click", () => {
   // Determine if the cart is empty
   if (cart.length > 0) {
     // Display the alert window
@@ -99,15 +117,15 @@ processOrderButton.addEventListener("click", () => {
     showMessage("Cart is empty.");
   }
 });
-
+});
 // About Page ----------------------------------------------------
 
 // Select the form element
 var customOrderButton = document.querySelector("form");
 // Add an event listener to the submit button
-customOrderButton.addEventListener("submit", () => {
+customOrderButton.addEventListener("submit", (event) => {
   // Prevent default submit event page refresh
-  preventDefault();  
+  event.preventDefault();  
   // Display the alert window
   try {
     showMessage("Thank you for your message."); 
@@ -116,6 +134,8 @@ customOrderButton.addEventListener("submit", () => {
   }
   });
 
+// Either clear out the innerHTML of the cart list or initialize the list items from the cart items stored in sessionStorage
+viewCartItems();
   // ------------------------------------------------------------------
 
   // Custom function in case of migration to different platform / alert deprecation
