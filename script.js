@@ -82,6 +82,7 @@ closeCartButton.addEventListener("click", () => {
 function closeCartModal() {
   cartModal.style.display = "none";
 }
+});
 
 // Select element with the id "clear-cart-button"
 var clearCartButton = document.querySelectorAll(".clear-cart-button");
@@ -140,11 +141,11 @@ customOrderButton.addEventListener("submit", (event) => {
 viewCartItems();
   // ------------------------------------------------------------------
 
-  // Custom function in case of migration to different platform / alert deprecation
-  function showMessage(message) {
-    alert(message);
-  }
+  
 
-});
+// Custom function in case of migration to different platform / alert deprecation
+function showMessage(message) {
+  alert(message);
+};
 
 });
