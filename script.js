@@ -45,10 +45,10 @@ var viewCartButton = document.getElementById("view-cart-button");
 var cartModal = document.getElementById("cart-modal");
 // Add an event listener to the view cart button
 viewCartButton.addEventListener("click", () => {
-    if (cart.length > 0) {
+    if (cart && cart.length > 0) {
       // Display the cart items
       openCartModal();
-      viewCartItems();
+      displayCartItems();
     } else {
       // Display the alert window
       showMessage("No items in cart.");
@@ -59,7 +59,7 @@ viewCartButton.addEventListener("click", () => {
     cartModal.style.display = "block";
   }
 
-  function viewCartItems() {
+  function displayCartItems() {
     var cartList = document.getElementById("cart-items");
     cartList.innerHTML = "";
 
@@ -91,11 +91,8 @@ clearCartButton.forEach((button) => {
   button.addEventListener("click", () => {
   // Determine if the cart is empty
   if (cart.length > 0) {
-    // Clear the cart
-    cart = [];
-    // Clear from session storage
-    sessionStorage.removeItem("cart");
-    viewCartItems();
+    clearCart();
+    displayCartItems();
     // Display the alert window
     showMessage("Cart cleared");
   } else {
@@ -106,6 +103,14 @@ clearCartButton.forEach((button) => {
 });
 });
 
+// Function to clear cart
+function clearCart() {
+    // Clear the cart
+    cart = [];
+    // Clear from session storage
+    sessionStorage.removeItem("cart");
+}
+
 // Select element with the id "process-order-button"
 var processOrderButton = document.querySelectorAll(".process-order-button");
 // Add an event listener to the process order button
@@ -115,6 +120,9 @@ processOrderButton.forEach((button) => {
   if (cart.length > 0) {
     // Display the alert window
     showMessage("Thank you for your order");
+    clearCart();
+    displayCartItems();
+    closeCartModal();
   } else {
     // Display the alert window
     showMessage("Cart is empty.");
@@ -124,21 +132,40 @@ processOrderButton.forEach((button) => {
 // About Page ----------------------------------------------------
 
 // Select the form element
-var customOrderButton = document.querySelector("form");
+const form = document.getElementById("contact-form");
+const customOrderButton = form.elements["submit"];
+
 // Add an event listener to the submit button
-customOrderButton.addEventListener("submit", (event) => {
-  // Prevent default submit event page refresh
-  event.preventDefault();  
-  // Display the alert window
-  try {
-    showMessage("Thank you for your message."); 
-  } catch (error) {
-    console.log("Error: " + error);
-  }
-  });
+customOrderButton.addEventListener("click", (event) => {
+  event.preventDefault(); // Prevent the default form submission
+  submitForm();
+});
+
+function submitForm() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const feedback = document.getElementById("feedback").value;
+  const customOrder = document.getElementById("custom-order").checked;
+
+  const customerInfo = {
+    name,
+    email,
+    phone,
+    feedback,
+    customOrder,
+  };
+
+  // Save customer information to localStorage
+  localStorage.setItem(name, JSON.stringify(customerInfo));
+
+  // Access and parse local data back out of localStorage
+  const who = JSON.parse(localStorage.getItem(name));
+  showMessage("Thank you for your message, " + who.name + "!");
+};
 
 // Either clear out the innerHTML of the cart list or initialize the list items from the cart items stored in sessionStorage
-viewCartItems();
+displayCartItems();
   // ------------------------------------------------------------------
 
   
