@@ -1,25 +1,27 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+
 // Newsletter
 // Add an event listener to the subscribe button
 document.getElementById("subscribe-button").addEventListener("click", () => {
   // Display the alert window
-  alert("Thank you for subscribing.");
+  showMessage("Thank you for subscribing.");
 });
 
 
 
 // Gallery Page
 // Initialize an empty cart array
-let cart = [];
+let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 
 // Add an event listener to the view cart button
 document.getElementById("view-cart-button").addEventListener("click", () => {
     if (cart.length > 0) {
       // Display the alert window
-      alert("Items in cart: " + cart.join(", "));
+      showMessage("Items in cart: " + cart.join(", "));
     } else {
       // Display the alert window
-      alert("No items in cart.");
+      showMessage("No items in cart.");
     }
   });
 
@@ -31,8 +33,10 @@ document.getElementById("view-cart-button").addEventListener("click", () => {
         const value = event.target.getAttribute("value");
         // Add the item to the cart
         cart.push(value);
+        // Store in session storage
+        sessionStorage.setItem("cart", JSON.stringify(cart));
         // Display the alert window
-        alert("Item added to the cart");
+        showMessage("Item added to the cart: " + value);
         console.log(cart);  
     }
 });
@@ -44,10 +48,10 @@ document.getElementById("clear-cart-button").addEventListener("click", () => {
     // Clear the cart
     cart = [];
     // Display the alert window
-    alert("Cart cleared");
+    showMessage("Cart cleared");
   } else {
     // Display the alert window
-    alert("No items to clear.");
+    showMessage("No items to clear.");
   }
 });
 
@@ -55,22 +59,29 @@ document.getElementById("clear-cart-button").addEventListener("click", () => {
 document.getElementById("process-order-button").addEventListener("click", () => {
   if (cart.length > 0) {
     // Display the alert window
-    alert("Thank you for your order");
+    showMessage("Thank you for your order");
   } else {
     // Display the alert window
-    alert("Cart is empty.");
+    showMessage("Cart is empty.");
   }
 });
 
 // About Page
 // Add an event listener to the submit button
-document.getElementById("submit-button").addEventListener("click", () => {
-    // Display the alert window
-    try {
-    alert("Thank you for your message."); } catch (error) {
-        console.log("Error: " + error);
-    }
+document.querySelector("form").addEventListener("submit", (event) => {
+  // Prevent default submit event page refresh
+  event.preventDefault();  
+  // Display the alert window
+  try {
+    showMessage("Thank you for your message."); 
+  } catch (error) {
+    console.log("Error: " + error);
+  }
   });
+
+function showMessage(message) {
+  alert(message);
+}
 
 });
 
