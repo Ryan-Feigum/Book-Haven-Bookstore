@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Newsletter
 // Add an event listener to the subscribe button
-document.getElementById("subscribe-button").addEventListener("click", () => {
+var subscribeButton = document.getElementById("subscribe-button");
+subscribeButton.addEventListener("click", () => {
   // Display the alert window
   showMessage("Thank you for subscribing.");
 });
@@ -15,7 +16,8 @@ document.getElementById("subscribe-button").addEventListener("click", () => {
 let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 
 // Add an event listener to the view cart button
-document.getElementById("view-cart-button").addEventListener("click", () => {
+var viewCartButton = document.getElementById("view-cart-button");
+viewCartButton.addEventListener("click", () => {
     if (cart.length > 0) {
       // Display the alert window
       showMessage("Items in cart: " + cart.join(", "));
@@ -27,8 +29,8 @@ document.getElementById("view-cart-button").addEventListener("click", () => {
 
 
   // Add an event listener to the add to cart buttons
-  document.addEventListener("click", function(event) {
-    if (event.target.classList.contains("add-to-cart-button")) {
+  var addCartButton = document.getElementsByClassName("add-to-cart-button");
+  addCartButton.addEventListener("click", () => {
         // Get the specific product value
         const value = event.target.getAttribute("value");
         // Add the item to the cart
@@ -39,11 +41,12 @@ document.getElementById("view-cart-button").addEventListener("click", () => {
         showMessage("Item added to the cart: " + value);
         console.log(cart);  
     }
-});
+);
 
 
 // Add an event listener to the clear cart button
-document.getElementById("clear-cart-button").addEventListener("click", () => {
+var clearCartButton = document.getElementById("clear-cart-button");
+clearCartButton.addEventListener("click", () => {
   if (cart.length > 0) {
     // Clear the cart
     cart = [];
@@ -56,7 +59,8 @@ document.getElementById("clear-cart-button").addEventListener("click", () => {
 });
 
 // Add an event listener to the process order button
-document.getElementById("process-order-button").addEventListener("click", () => {
+var processOrderButton = document.getElementById("process-order-button");
+processOrderButton.addEventListener("click", () => {
   if (cart.length > 0) {
     // Display the alert window
     showMessage("Thank you for your order");
@@ -68,9 +72,10 @@ document.getElementById("process-order-button").addEventListener("click", () => 
 
 // About Page
 // Add an event listener to the submit button
-document.querySelector("form").addEventListener("submit", (event) => {
+var customOrderButton = document.querySelector("form");
+customOrderButton.addEventListener("submit", () => {
   // Prevent default submit event page refresh
-  event.preventDefault();  
+  preventDefault();  
   // Display the alert window
   try {
     showMessage("Thank you for your message."); 
@@ -79,9 +84,10 @@ document.querySelector("form").addEventListener("submit", (event) => {
   }
   });
 
-function showMessage(message) {
-  alert(message);
-}
+  // Custom function in case of migration to different platform / alert deprecation
+  function showMessage(message) {
+    alert(message);
+  }
 
 });
 
