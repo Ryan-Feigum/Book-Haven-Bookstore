@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 
 // Newsletter ----------------------------------------------------
 
@@ -14,7 +16,7 @@ subscribeButton.addEventListener("click", () => {
 // Gallery Page ----------------------------------------------------
 
 // Initialize an empty cart array
-let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+var cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 
 function addToCart(item) {
   // Add item to array
@@ -145,3 +147,4 @@ viewCartItems();
 
 });
 
+});
