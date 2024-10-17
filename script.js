@@ -2,8 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // Newsletter
-// Add an event listener to the subscribe button
+// Select element with the id "subscribe-button"
 var subscribeButton = document.getElementById("subscribe-button");
+// Add an event listener to the subscribe button
 subscribeButton.addEventListener("click", () => {
   // Display the alert window
   showMessage("Thank you for subscribing.");
@@ -15,8 +16,9 @@ subscribeButton.addEventListener("click", () => {
 // Initialize an empty cart array
 let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 
-// Add an event listener to the view cart button
+// Select element with the id "view-cart-button"
 var viewCartButton = document.getElementById("view-cart-button");
+// Add an event listener to the view cart button
 viewCartButton.addEventListener("click", () => {
     if (cart.length > 0) {
       // Display the alert window
@@ -26,7 +28,6 @@ viewCartButton.addEventListener("click", () => {
       showMessage("No items in cart.");
     }
   });
-
 
   // Select all elements with the class "add-to-cart-button"
   var addCartButton = document.querySelectorAll(".add-to-cart-button");
@@ -46,10 +47,11 @@ viewCartButton.addEventListener("click", () => {
     })
 });
 
-
-// Add an event listener to the clear cart button
+// Select element with the id "clear-cart-button"
 var clearCartButton = document.getElementById("clear-cart-button");
+// Add an event listener to the clear cart button
 clearCartButton.addEventListener("click", () => {
+  // Determine if the cart is empty
   if (cart.length > 0) {
     // Clear the cart
     cart = [];
@@ -61,9 +63,11 @@ clearCartButton.addEventListener("click", () => {
   }
 });
 
-// Add an event listener to the process order button
+// Select element with the id "process-order-button"
 var processOrderButton = document.getElementById("process-order-button");
+// Add an event listener to the process order button
 processOrderButton.addEventListener("click", () => {
+  // Determine if the cart is empty
   if (cart.length > 0) {
     // Display the alert window
     showMessage("Thank you for your order");
@@ -74,8 +78,9 @@ processOrderButton.addEventListener("click", () => {
 });
 
 // About Page
-// Add an event listener to the submit button
+// Select the form element
 var customOrderButton = document.querySelector("form");
+// Add an event listener to the submit button
 customOrderButton.addEventListener("submit", () => {
   // Prevent default submit event page refresh
   preventDefault();  
