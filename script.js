@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
 
 
-// Newsletter
+// Newsletter ----------------------------------------------------
+
 // Select element with the id "subscribe-button"
 var subscribeButton = document.getElementById("subscribe-button");
 // Add an event listener to the subscribe button
@@ -12,40 +13,58 @@ subscribeButton.addEventListener("click", () => {
 
 
 
-// Gallery Page
+// Gallery Page ----------------------------------------------------
+
 // Initialize an empty cart array
 let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+
+// Select all elements with the class "add-to-cart-button"
+var addCartButton = document.querySelectorAll(".add-to-cart-button");
+// Loop through each button and add an event listener
+addCartButton.forEach((button) => {
+  button.addEventListener("click", () => {
+      // Get the specific product value
+      var item = this.getAttribute("item");
+      // Add the item to the cart
+      addToCart(item);
+  })
+});
+
+function addToCart(item) {
+  // Add item to array
+  cart.push(item);
+  // Store in session storage
+  sessionStorage.setItem("cart", JSON.stringify(cart));
+  // Display the alert window
+  showMessage("Item added to the cart: " + item);
+}
 
 // Select element with the id "view-cart-button"
 var viewCartButton = document.getElementById("view-cart-button");
 // Add an event listener to the view cart button
 viewCartButton.addEventListener("click", () => {
     if (cart.length > 0) {
-      // Display the alert window
-      showMessage("Items in cart: " + cart.join(", "));
+      // Display the cart items
+      viewCartItems();
     } else {
       // Display the alert window
       showMessage("No items in cart.");
     }
   });
 
-  // Select all elements with the class "add-to-cart-button"
-  var addCartButton = document.querySelectorAll(".add-to-cart-button");
+  function viewCartItems() {
+    var cartList = documemt.getElementById("cart-items");
+    cartList.innerHTML = "";
 
-  // Loop through each button and add an event listener
-  addCartButton.forEach((button) => {
-    button.addEventListener("click", () => {
-        // Get the specific product value
-        const item = button.getAttribute("item");
-        // Add the item to the cart
-        cart.push(item);
-        // Store in session storage
-        sessionStorage.setItem("cart", JSON.stringify(cart));
-        // Display the alert window
-        showMessage("Item added to the cart: " + item);
-        console.log(cart);  
-    })
-});
+    if (cart && cart.length > 0) {
+      for (var i = 0; i < cart.length; i++)
+      {
+        var listItem = document.createElement("li");
+        listItem.textContent = cart[i];
+        cartList.appendChild(listItem);
+      }
+    }
+  }
 
 // Select element with the id "clear-cart-button"
 var clearCartButton = document.getElementById("clear-cart-button");
@@ -55,8 +74,12 @@ clearCartButton.addEventListener("click", () => {
   if (cart.length > 0) {
     // Clear the cart
     cart = [];
+    // Clear from session storage
+    sessionStorage.removeItem("cart");
+    displayCartItems();
     // Display the alert window
     showMessage("Cart cleared");
+    closeCartModal();
   } else {
     // Display the alert window
     showMessage("No items to clear.");
@@ -77,7 +100,8 @@ processOrderButton.addEventListener("click", () => {
   }
 });
 
-// About Page
+// About Page ----------------------------------------------------
+
 // Select the form element
 var customOrderButton = document.querySelector("form");
 // Add an event listener to the submit button
@@ -91,6 +115,8 @@ customOrderButton.addEventListener("submit", () => {
     console.log("Error: " + error);
   }
   });
+
+  // ------------------------------------------------------------------
 
   // Custom function in case of migration to different platform / alert deprecation
   function showMessage(message) {
