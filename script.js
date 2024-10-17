@@ -28,20 +28,23 @@ viewCartButton.addEventListener("click", () => {
   });
 
 
-  // Add an event listener to the add to cart buttons
-  var addCartButton = document.getElementsByClassName("add-to-cart-button");
-  addCartButton.addEventListener("click", () => {
+  // Select all elements with the class "add-to-cart-button"
+  var addCartButton = document.querySelectorAll(".add-to-cart-button");
+
+  // Loop through each button and add an event listener
+  addCartButton.forEach((button) => {
+    button.addEventListener("click", () => {
         // Get the specific product value
-        const value = event.target.getAttribute("value");
+        const item = button.getAttribute("item");
         // Add the item to the cart
-        cart.push(value);
+        cart.push(item);
         // Store in session storage
         sessionStorage.setItem("cart", JSON.stringify(cart));
         // Display the alert window
-        showMessage("Item added to the cart: " + value);
+        showMessage("Item added to the cart: " + item);
         console.log(cart);  
-    }
-);
+    })
+});
 
 
 // Add an event listener to the clear cart button
