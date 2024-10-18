@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
 
+  
 // Newsletter ----------------------------------------------------
 
 // Select element with the id "subscribe-button"
@@ -78,11 +79,11 @@ var closeCartButton = document.getElementById("close-cart-modal");
 // Add an event listener to closeCartButton
 closeCartButton.addEventListener("click", () => {
   closeCartModal();
+});
 // Function to close the modal by changing CSS property
 function closeCartModal() {
   cartModal.style.display = "none";
 }
-});
 
 // Select element with the id "clear-cart-button"
 var clearCartButton = document.querySelectorAll(".clear-cart-button");
@@ -129,14 +130,14 @@ processOrderButton.forEach((button) => {
   }
 });
 });
+
 // About Page ----------------------------------------------------
 
 // Select the form element
 const form = document.getElementById("contact-form");
-const customOrderButton = form.elements["submit"];
 
 // Add an event listener to the submit button
-customOrderButton.addEventListener("click", (event) => {
+form.addEventListener("submit", (event) => {
   event.preventDefault(); // Prevent the default form submission
   submitForm();
 });
@@ -149,12 +150,18 @@ function submitForm() {
   const customOrder = document.getElementById("custom-order").checked;
 
   const customerInfo = {
-    name,
-    email,
-    phone,
-    feedback,
-    customOrder,
+    name: name,
+    email: email,
+    phone: phone,
+    feedback: feedback,
+    customOrder: customOrder,
   };
+
+    // Retrieve the existing array from local storage or initialize a new one
+    var storedFormData = JSON.parse(localStorage.getItem("customerInfo")) || [];
+    
+    //  Add the new customer info to the array
+    storedFormData.push(customerInfo);
 
   // Save customer information to localStorage
   localStorage.setItem(name, JSON.stringify(customerInfo));
@@ -163,6 +170,7 @@ function submitForm() {
   const who = JSON.parse(localStorage.getItem(name));
   showMessage("Thank you for your message, " + who.name + "!");
 };
+  
 
 // Either clear out the innerHTML of the cart list or initialize the list items from the cart items stored in sessionStorage
 displayCartItems();
